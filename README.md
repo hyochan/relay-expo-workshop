@@ -85,9 +85,9 @@ Here is [installation guide](https://relay.dev/docs/getting-started/installation
 
 4. While the server is running, run `yarn generate`. This will generate `src/types/graphql.tsx` which has all schema types. You can safely ignore type warning in `.eslintignore`.
    - Create `.eslintignore` file.
-    ```sh
-    touch .eslintignore
-    ```
+     ```sh
+     touch .eslintignore
+     ```
    - Add `src/types/graphql.tsx` in `.eslintignore`.
 
 ### Codegen Sepecification
@@ -126,3 +126,19 @@ Describes plugins we are using for graphql codegen.
 
   It extends the basic TypeScript plugins: [@graphql-codegen/typescript](https://www.graphql-code-generator.com/docs/plugins/typescript), [@graphql-codegen/typescript-operations](https://www.graphql-code-generator.com/docs/plugins/typescript-operations) - and thus shares a similar configuration.
 
+## What's more
+
+<!-- Internals -->
+[runtime-config]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/runtime-config.md
+[query]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/query.md
+[mutation]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/mutation.md
+[fragment]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/fragment.md
+[cache-invalidation]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/cache-invalidation.md
+[relay-cursor-pagination]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/relay-cursor-pagination.md
+
+- [runtime-config][runtime-config]
+- [query][query]
+- [mutation][mutation]
+- [relay-cursor-pagination][relay-cursor-pagination]
+- [fragment][fragment]
+- [cache invalidation][cache-invalidation]
