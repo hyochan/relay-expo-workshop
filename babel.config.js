@@ -10,6 +10,6 @@ module.exports = (api) => {
       'babel-preset-expo',
       '@babel/preset-typescript',
     ],
-    plugins: ['react-native-reanimated/plugin'],
+    plugins: ['react-native-reanimated/plugin', 'relay'],
   };
 };

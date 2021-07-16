@@ -1,213 +1,128 @@
-### ANNOUNCEMENT
+## Relay Workshop with Expo
 
-DO NOT MODIFY OR CHANGE THE CODE BEFORE CONFIRMED BY `DOOBOOLAB`. THIS REPOSITORY IS USED IN `DOOBOO-CLI`.
+### Requirements
 
-# Expo TS Boilerplate
+### Test Server (HackaTalk)
+- [SourceCode](https://github.com/dooboolab/hackatalk/tree/master/server)
+- [Installation](https://website.hackatalk.dev/docs/server/installation)
 
-[![CircleCI](https://circleci.com/gh/dooboolab/dooboo-expo.svg?style=shield)](https://circleci.com/gh/dooboolab/dooboo-expo)
-[![codecov](https://codecov.io/gh/dooboolab/dooboo-expo/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/dooboo-expo)
+### Install Relay
 
-> Specification
+Here is [installation guide](https://relay.dev/docs/getting-started/installation-and-setup) for [relay](https://relay.dev) and we'll summarize them here.
 
-- [react-native](https://github.com/facebook/react-native)
-- [expo](https://github.com/expo/expo)
-- [react-navigation](https://github.com/react-navigation/react-navigation)
-- [typescript](https://github.com/Microsoft/TypeScript)
-- [localization](https://github.com/stefalda/ReactNativeLocalization)
-- [emotion](https://emotion.sh)
-- [dooboo-ui](https://github.com/dooboolab/dooboo-ui)
-- [ts-jest](https://github.com/kulshekhar/ts-jest)
-- [@testing-library/react-native](https://github.com/testing-library/native-testing-library)
-- [@testing-library/react-hooks](https://github.com/testing-library/react-hooks-testing-library)
-- [react-hook](https://reactjs.org/docs/hooks-intro.html)
-- [prettier](https://prettier.io)
+1. Install relay
+   ```sh
+   yarn add react react-dom react-relay
+   yarn add -D relay-config babel-plugin-relay graphql relay-compiler relay-compiler-language-typescript
+   ```
 
-### Gain points
+2. Create the configuration file
+   ```js
+   module.exports = {
+     exclude: ['**/node_modules/**', '**/__mocks__/**', '**/__generated__/**'],
+     src: './src',
+     schema: 'schema.graphql',
+     language: 'typescript',
+     artifactDirectory: './src/__generated__',
+     noFutureProofEnums: true,
+   };
 
-```
-1. Sample of context-api with `react-hook` (`useContext`).
-2. Know how to structure react native app with typescript.
-3. Know how to navigate between screens with `react-navigation`.
-4. Know how to write test code with `testing-library`.
-5. Know how to `lint` your project with `eslint` for both `ts` and maybe some `js`.
-6. Know how to localize your project.
-```
+   ```
+   > Note that the `schema` path should be the schema generated from [Test Server](#test-server). We'll see how to generate it automatically soon.
 
-### INSTALL
+3. Add `npm script` in `package.json`
+   ```sh
+    "relay": "relay-compiler",
+    "relay-watch": "yarn relay-compiler --watch",
+   ```
+   > Running `yarn relay` will generate schema types.
 
-```
-npm install && npm start
-// or
-yarn && yarn start
-```
+### Install graphql-codegen
+> You can automatically download `schema.graphql` from server and generate types with [graphql-code-generator](https://www.graphql-code-generator.com).
 
-### Structures
+1. Install packages
+   ```sh
+   yarn add -D get-graphql-schema @graphql-codegen/cli @graphql-codegen/typescript @graphql-codegen/typescript-document-nodes @graphql-codegen/typescript-graphql-files-modules @graphql-codegen/typescript-operations @graphql-codegen/typescript-react-apollo
+   ```
 
-```text
-app/
-├─ .doobooo // necessary if using dooboo-cli
-├─ .expo
-├─ assets
-│  └─ icons // app icons
-│  └─ images // app images like background images
-├─ node_modules/
-├─ src/
-│  └─ apis
-│  └─ components
-│     └─ navigations
-│     └─ screen
-│     └─ shared
-│  └─ contexts
-│  └─ utils
-│  └─ App.tsx
-├─ test/
-├─ .buckconfig
-├─ .flowconfig
-├─ .gitattributes
-├─ .gitignore
-├─ .watchmanconfig
-├─ app.json
-├─ babel.config.js
-├─ index.js
-├─ jest.config.js
-├─ package.json
-├─ README.md
-├─ STRINGS.js
-├─ tsconfig.json
-└─ tslint.json
-```
+   Currently, below are the packages versions.
+   ```sh
+   "get-graphql-schema": "^2.1.2",
+   "@graphql-codegen/cli": "^1.21.6",
+   "@graphql-codegen/typescript": "^1.22.4",
+   "@graphql-codegen/typescript-document-nodes": "^1.17.15",
+   "@graphql-codegen/typescript-graphql-files-modules": "^1.18.1",
+   "@graphql-codegen/typescript-operations": "^1.18.3",
+   "@graphql-codegen/typescript-react-apollo": "^2.3.0",
+   ```
 
-### Running the project
+2. Add below scripts to `package.json`.
+   ```
+   "schema": "get-graphql-schema http://localhost:4000/graphql > schema.graphql",
+   "codegen": "graphql-codegen --config codegen.yml",
+   "generate": "yarn schema && yarn codegen",
+   ``` 
 
-Running the project is as simple as running
+3. Add `codegen.yml`
+   ```yml
+   overwrite: true
+   schema:
+     - './schema.graphql'
+   generates:
+     src/types/graphql.tsx:
+       config:
+         gqlImport: graphql-tag
+         skipDocumentsValidation: true
+         flattenGeneratedTypes: true
+         enumsAsTypes: true
+       plugins:
+         - 'typescript'
+         - 'typescript-operations'
+         - 'typescript-react-apollo'
+   ```
+   
+   > Follow [codegen-specification](#codegen-specification) for detailed information.
 
-```sh
-npm run start
-```
+4. While the server is running, run `yarn generate`. This will generate `src/types/graphql.tsx` which has all schema types. You can safely ignore type warning in `.eslintignore`.
+   - Create `.eslintignore` file.
+    ```sh
+    touch .eslintignore
+    ```
+   - Add `src/types/graphql.tsx` in `.eslintignore`.
 
-This runs the `start` script specified in our `package.json`, and will spawn off a server which reloads the page as we save our files.
-Typically the server runs at `http://localhost:8080`, but should be automatically opened for you.
+### Codegen Sepecification
+Description on specs we use for in `codegen`.
 
-## Testing the project
+#### Config
 
-Testing is also just a command away:
+- skipDocumentsValidation
+  When using relay, some relay style arguments fails when running codgen. You can see [related issue here](https://github.com/dotansimha/graphql-code-generator/issues/2565).
 
-```sh
-npm test
-```
+  Therefore we are setting this value to `true`.
 
-> Result
+- flattenGeneratedTypes
+  Flatten fragment spread and inline fragments into a simple selection set before generating.
 
-```
-> jest -u
+- gqlImport
+  type: `string` default: `graphql-tag#gql`
 
- PASS  src/components/shared/__tests__/Button.test.tsx
- PASS  src/components/screen/__tests__/Intro.test.tsx
- › 2 snapshots written.
+  Customize from which module will `gql` be imported from. This is useful if you want to use modules other than `graphql-tag`, e.g. `graphql.macro`.
 
-Snapshot Summary
- › 2 snapshots written in 1 test suite.
+- enumsAsType
+  type: `boolean` default: `false`
 
-Test Suites: 2 passed, 2 total
-Tests:       5 passed, 5 total
-Snapshots:   2 added, 4 passed, 6 total
-Time:        3.055s, estimated 6s
-Ran all test suites
-```
+  Generates enum as TypeScript type instead of enum.
 
-### Writing tests with Jest
+#### Plugin
+Describes plugins we are using for graphql codegen.
 
-We've created test examples with jest-ts in `src/components/screen/__tests__` and `src/components/shared/__tests__`. Since react is component oriented, we've designed to focus on writing test in same level of directory with component. You can simply run `npm test` to test if it succeeds and look more closer opening the source.
+- [typescript-operations](https://www.graphql-code-generator.com/docs/plugins/typescript-operations)
+  This plugin generates TypeScript types based on your GraphQLSchema and your GraphQL operations and fragments. It generates types for your GraphQL documents: Query, Mutation, Subscription and Fragment.
 
-### Localization
+  Note: In most configurations, this plugin requires you to use `typescript as well, because it depends on its base types.
 
-We've defined Localization strings in `STRINGS.js` which is in root dir.
-We used [react-native-localization](https://github.com/stefalda/ReactNativeLocalization) pacakage for this one.
+- [typescript-react-apollo](https://www.graphql-code-generator.com/docs/plugins/typescript-react-apollo)
+  This plugin generates React Apollo components and HOC with TypeScript typings.
 
-```
-import * as Localization from 'expo-localization';
-import i18n from 'i18n-js';
+  It extends the basic TypeScript plugins: [@graphql-codegen/typescript](https://www.graphql-code-generator.com/docs/plugins/typescript), [@graphql-codegen/typescript-operations](https://www.graphql-code-generator.com/docs/plugins/typescript-operations) - and thus shares a similar configuration.
 
-const en = {
-  HELLO: 'Hello',
-  LOGIN: 'Login',
-  EMAIL: 'Email',
-  PASSWORD: 'Password',
-  SIGNUP: 'SIGN UP',
-  FORGOT_PW: 'Forgot password?',
-  NAVIGATE: 'Navigate',
-  CHANGE_THEME: 'Change theme',
-};
-
-const ko = {
-  HELLO: '안녕하세요',
-  LOGIN: '로그인',
-  EMAIL: '이메일',
-  PASSWORD: '패스워드',
-  SIGNUP: '회원가입',
-  FORGOT_PW: '비밀번호를 잊어버리셨나요?',
-  NAVIGATE: '이동하기',
-  CHANGE_THEME: '테마변경',
-};
-
-i18n.fallbacks = true;
-i18n.translations = { en, ko };
-i18n.locale = Localization.locale;
-
-export const getString = (param: string, mapObj?: object) => {
-  if (mapObj) {
-    i18n.t(param, mapObj);
-  }
-  return i18n.t(param);
-};
-```
-
-Fixed jest setup by adding following in jestSetup.
-
-```
-import { NativeModules } from 'react-native';
-
-/**
- * monkey patching the locale to avoid the error:
- * Something went wrong initializing the native ReactLocalization module
- * https://gist.github.com/MoOx/08b465c3eac9e36e683929532472d1e0
- */
-
-NativeModules.ReactLocalization = {
-  language: 'en_US',
-};
-```
-
-# Vscode prettier and eslint setup
-
-```
-"eslint.enable": true,
-"eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-],
-// prettier extension setting
-"editor.formatOnSave": true,
-"[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"prettier.singleQuote": true,
-"prettier.trailingComma": "all",
-"prettier.arrowParens": "always",
-"prettier.jsxSingleQuote": true
-```
-
-### Expo
-
-35
