@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Button] [ThemeType.Light] renders without crashing 1`] = `
+<View
+  activeOpacity={0.6}
+  delayPressIn={50}
+  onPress={[Function]}
+  testID="btn"
+>
+  <View
+    onLayout={[Function]}
+    outlined={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "black",
+          "borderBottomColor": "black",
+          "borderLeftColor": "black",
+          "borderRightColor": "black",
+          "borderTopColor": "black",
+        },
+        Array [
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "borderBottomLeftRadius": 20,
+            "borderBottomRightRadius": 20,
+            "borderTopLeftRadius": 20,
+            "borderTopRightRadius": 20,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "paddingBottom": 10,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 10,
+          },
+          Array [
+            undefined,
+            false,
+            undefined,
+          ],
+        ],
+      ]
+    }
+    testID="button-container"
+    type="primary"
+  >
+    <Text
+      outlined={false}
+      style={
+        Array [
+          Object {
+            "color": "white",
+          },
+          Array [
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+      type="primary"
+    />
+  </View>
+</View>
+`;
+
+exports[`[Button] should render [ThemeType.Dark] without crashing 1`] = `
+<View
+  activeOpacity={0.6}
+  delayPressIn={50}
+  onPress={[Function]}
+  testID="btn"
+>
+  <View
+    onLayout={[Function]}
+    outlined={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "white",
+          "borderBottomColor": "white",
+          "borderLeftColor": "white",
+          "borderRightColor": "white",
+          "borderTopColor": "white",
+        },
+        Array [
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "borderBottomLeftRadius": 20,
+            "borderBottomRightRadius": 20,
+            "borderTopLeftRadius": 20,
+            "borderTopRightRadius": 20,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "paddingBottom": 10,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 10,
+          },
+          Array [
+            undefined,
+            false,
+            undefined,
+          ],
+        ],
+      ]
+    }
+    testID="button-container"
+    type="primary"
+  >
+    <Text
+      outlined={false}
+      style={
+        Array [
+          Object {
+            "color": "black",
+          },
+          Array [
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+      type="primary"
+    />
+  </View>
+</View>
+`;
+
+exports[`[Button] should render [isDisabled] status without crashing 1`] = `
+<View
+  activeOpacity={0.6}
+  delayPressIn={50}
+  onPress={[Function]}
+  testID="btn"
+>
+  <View
+    onLayout={[Function]}
+    outlined={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "black",
+          "borderBottomColor": "black",
+          "borderLeftColor": "black",
+          "borderRightColor": "black",
+          "borderTopColor": "black",
+        },
+        Array [
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "borderBottomLeftRadius": 20,
+            "borderBottomRightRadius": 20,
+            "borderTopLeftRadius": 20,
+            "borderTopRightRadius": 20,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "paddingBottom": 10,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 10,
+          },
+          Array [
+            undefined,
+            false,
+            undefined,
+          ],
+        ],
+      ]
+    }
+    testID="button-container"
+    type="primary"
+  >
+    <Text
+      outlined={false}
+      style={
+        Array [
+          Object {
+            "color": "white",
+          },
+          Array [
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+      type="primary"
+    />
+  </View>
+</View>
+`;
+
+exports[`[Button] should render [isLoading] status without crashing 1`] = `
+<View
+  activeOpacity={0.6}
+  delayPressIn={50}
+  onPress={[Function]}
+  testID="btn"
+>
+  <View
+    onLayout={[Function]}
+    outlined={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "black",
+          "borderBottomColor": "black",
+          "borderLeftColor": "black",
+          "borderRightColor": "black",
+          "borderTopColor": "black",
+        },
+        Array [
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "borderBottomLeftRadius": 20,
+            "borderBottomRightRadius": 20,
+            "borderTopLeftRadius": 20,
+            "borderTopRightRadius": 20,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "paddingBottom": 10,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 10,
+          },
+          Array [
+            undefined,
+            false,
+            undefined,
+          ],
+        ],
+      ]
+    }
+    testID="button-container"
+    type="primary"
+  >
+    <Text
+      outlined={false}
+      style={
+        Array [
+          Object {
+            "color": "white",
+          },
+          Array [
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+      type="primary"
+    />
+  </View>
+</View>
+`;
