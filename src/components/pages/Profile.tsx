@@ -1,11 +1,17 @@
 import {Button, LoadingIndicator} from 'dooboo-ui';
-import {PreloadedQuery, usePreloadedQuery, useQueryLoader} from 'react-relay';
+import {
+  PreloadedQuery,
+  useFragment,
+  usePreloadedQuery,
+  useQueryLoader,
+} from 'react-relay';
 import React, {FC, Suspense, useEffect} from 'react';
 import {Text, View} from 'react-native';
+import {meQuery, userMoreFragment} from '../../relay/queries/User';
 
 import {RootStackNavigationProps} from '../navigations/RootStack';
 import {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
-import {meQuery} from '../../relay/queries/User';
+import {UserMore_me$key} from '../../__generated__/UserMore_me.graphql';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -16,6 +22,28 @@ const Container = styled.View`
   align-items: center;
   justify-content: center;
 `;
+
+type UserFragProps = {
+  userKey: UserMore_me$key;
+};
+
+const UserFragComp: FC<UserFragProps> = ({userKey}) => {
+  const data = useFragment(userMoreFragment, userKey);
+
+  return (
+    <View
+      style={{
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Text>{data?.statusMessage}</Text>
+      <Text>{data?.photoURL}</Text>
+      <Text>{data?.profile?.authType}</Text>
+      <Text>{data?.verified}</Text>
+    </View>
+  );
+};
 
 type ProfileProps = {
   meQueryReference: PreloadedQuery<UserMeQuery, Record<string, unknown>>;
@@ -34,7 +62,7 @@ const Profile: FC<ProfileProps> = ({meQueryReference}) => {
       <Text>{me?.email}</Text>
       <Text>{me?.name}</Text>
       <Text>{me?.nickname}</Text>
-      <Text>{me?.statusMessage}</Text>
+      {me && <UserFragComp userKey={me} />}
       <Button
         text="Go to ProfileLazy"
         style={{marginTop: 10}}

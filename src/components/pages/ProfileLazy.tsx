@@ -24,7 +24,6 @@ const Profile: FC = () => {
       <Text>{me?.email}</Text>
       <Text>{me?.name}</Text>
       <Text>{me?.nickname}</Text>
-      <Text>{me?.statusMessage}</Text>
     </View>
   );
 };

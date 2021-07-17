@@ -1,8 +1,11 @@
 import gql from 'graphql-tag';
+
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends {[key: string]: unknown}> = {[K in keyof T]: T[K]};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  {[SubKey in K]?: Maybe<T[SubKey]>};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  {[SubKey in K]: Maybe<T[SubKey]>};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -27,19 +30,13 @@ export type Scalars = {
   Upload: any;
 };
 
-
-
 export type AuthPayload = {
   __typename?: 'AuthPayload';
   token: Scalars['String'];
   user: User;
 };
 
-export type AuthType =
-  | 'email'
-  | 'facebook'
-  | 'google'
-  | 'apple';
+export type AuthType = 'email' | 'facebook' | 'google' | 'apple';
 
 export type BlockedUser = {
   __typename?: 'BlockedUser';
@@ -66,14 +63,12 @@ export type Channel = {
   memberships?: Maybe<Array<Membership>>;
 };
 
-
 export type ChannelMessagesArgs = {
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   last?: Maybe<Scalars['Int']>;
   before?: Maybe<Scalars['String']>;
 };
-
 
 export type ChannelMembershipsArgs = {
   excludeMe?: Maybe<Scalars['Boolean']>;
@@ -101,9 +96,6 @@ export type ChannelEdge = {
   node?: Maybe<Channel>;
 };
 
-
-
-
 export type Friend = {
   __typename?: 'Friend';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -112,7 +104,6 @@ export type Friend = {
   user?: Maybe<User>;
   friend?: Maybe<User>;
 };
-
 
 export type Membership = {
   __typename?: 'Membership';
@@ -124,7 +115,6 @@ export type Membership = {
   user?: Maybe<User>;
   channel?: Maybe<Channel>;
 };
-
 
 export type Message = {
   __typename?: 'Message';
@@ -164,7 +154,6 @@ export type MessageEdge = {
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Node */
   node?: Maybe<Message>;
 };
-
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -217,54 +206,44 @@ export type Mutation = {
   createReport?: Maybe<Report>;
 };
 
-
 export type MutationSignUpArgs = {
   photoUpload?: Maybe<Scalars['Upload']>;
   user: UserCreateInput;
 };
-
 
 export type MutationSignInEmailArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
 
-
 export type MutationSignInWithFacebookArgs = {
   accessToken: Scalars['String'];
 };
-
 
 export type MutationSignInWithAppleArgs = {
   accessToken: Scalars['String'];
 };
 
-
 export type MutationSignInWithGoogleArgs = {
   accessToken: Scalars['String'];
 };
-
 
 export type MutationSendVerificationArgs = {
   email: Scalars['String'];
 };
 
-
 export type MutationUpdateProfileArgs = {
   user: UserUpdateInput;
 };
-
 
 export type MutationFindPasswordArgs = {
   email: Scalars['String'];
 };
 
-
 export type MutationChangeEmailPasswordArgs = {
   password: Scalars['String'];
   newPassword: Scalars['String'];
 };
-
 
 export type MutationCreateNotificationArgs = {
   token: Scalars['String'];
@@ -272,55 +251,45 @@ export type MutationCreateNotificationArgs = {
   os?: Maybe<Scalars['String']>;
 };
 
-
 export type MutationDeleteNotificationArgs = {
   token: Scalars['String'];
 };
-
 
 export type MutationSingleUploadArgs = {
   file: Scalars['Upload'];
   dir?: Maybe<Scalars['String']>;
 };
 
-
 export type MutationAddFriendArgs = {
   friendId: Scalars['String'];
 };
 
-
 export type MutationDeleteFriendArgs = {
   friendId: Scalars['String'];
 };
-
 
 export type MutationCreateChannelArgs = {
   channel: ChannelCreateInput;
   message?: Maybe<MessageCreateInput>;
 };
 
-
 export type MutationFindOrCreatePrivateChannelArgs = {
   peerUserIds: Array<Scalars['String']>;
 };
 
-
 export type MutationLeaveChannelArgs = {
   channelId: Scalars['String'];
 };
-
 
 export type MutationInviteUsersToChannelArgs = {
   channelId: Scalars['String'];
   userIds: Array<Scalars['String']>;
 };
 
-
 export type MutationKickUsersFromChannelArgs = {
   channelId: Scalars['String'];
   userIds: Array<Scalars['String']>;
 };
-
 
 export type MutationCreateMessageArgs = {
   channelId: Scalars['String'];
@@ -328,21 +297,17 @@ export type MutationCreateMessageArgs = {
   deviceKey: Scalars['String'];
 };
 
-
 export type MutationDeleteMessageArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationCreateBlockedUserArgs = {
   blockedUserId: Scalars['String'];
 };
 
-
 export type MutationDeleteBlockedUserArgs = {
   blockedUserId: Scalars['String'];
 };
-
 
 export type MutationCreateReportArgs = {
   reportedUserId: Scalars['String'];
@@ -399,11 +364,9 @@ export type Query = {
   reports?: Maybe<Array<Maybe<Report>>>;
 };
 
-
 export type QueryUserArgs = {
   id: Scalars['String'];
 };
-
 
 export type QueryUsersArgs = {
   searchText?: Maybe<Scalars['String']>;
@@ -413,11 +376,9 @@ export type QueryUsersArgs = {
   before?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryNotificationsArgs = {
   userId: Scalars['String'];
 };
-
 
 export type QueryFriendsArgs = {
   searchText?: Maybe<Scalars['String']>;
@@ -427,11 +388,9 @@ export type QueryFriendsArgs = {
   before?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryChannelArgs = {
   channelId: Scalars['String'];
 };
-
 
 export type QueryChannelsArgs = {
   withMessage?: Maybe<Scalars['Boolean']>;
@@ -441,11 +400,9 @@ export type QueryChannelsArgs = {
   before?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryMessageArgs = {
   id: Scalars['String'];
 };
-
 
 export type QueryMessagesArgs = {
   channelId: Scalars['String'];
@@ -455,7 +412,6 @@ export type QueryMessagesArgs = {
   last?: Maybe<Scalars['Int']>;
   before?: Maybe<Scalars['String']>;
 };
-
 
 export type QueryReportsArgs = {
   userId: Scalars['String'];
@@ -497,11 +453,9 @@ export type Subscription = {
   onMessage?: Maybe<Message>;
 };
 
-
 export type SubscriptionOnMessageArgs = {
   deviceKey: Scalars['String'];
 };
-
 
 export type User = {
   __typename?: 'User';
