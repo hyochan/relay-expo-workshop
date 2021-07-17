@@ -116,12 +116,14 @@ We'll discover `mutation` queries first to create the data. Mutation query provi
       ```
 
 7. Create user with local server
+
    ![image](https://user-images.githubusercontent.com/27461460/126030046-256bd4cb-5721-4f2f-9fe4-e0edbcc7b84f.png)
 
    - User: test@email.com
    - Password: password12
 
 8. Get the correct response from the server
+
    ![image](https://user-images.githubusercontent.com/27461460/126030147-95b39c00-4ab5-4abb-8791-73ef05a3a5c4.png)
 
 ## Query
