@@ -37,13 +37,19 @@ export const meQuery = graphql`
       email
       name
       nickname
-      statusMessage
-      verified
-      photoURL
-      thumbURL
-      profile {
-        authType
-      }
+      ...UserMore_me
+    }
+  }
+`;
+
+export const userMoreFragment = graphql`
+  fragment UserMore_me on User {
+    statusMessage
+    verified
+    photoURL
+    thumbURL
+    profile {
+      authType
     }
   }
 `;

@@ -1,7 +1,10 @@
 import * as React from 'react';
 
 import {Button, Text, View} from 'react-native';
-import {ResettableRelayProvider, useReducerContext} from '../ResettableRelayProvider';
+import {
+  ResettableRelayProvider,
+  useReducerContext,
+} from '../ResettableRelayProvider';
 import {RenderAPI, render} from '@testing-library/react-native';
 
 const FakeChild = (): React.ReactElement => {
