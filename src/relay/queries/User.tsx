@@ -29,3 +29,21 @@ export const signInEmail = graphql`
     }
   }
 `;
+
+export const meQuery = graphql`
+  query UserMeQuery {
+    me {
+      id
+      email
+      name
+      nickname
+      statusMessage
+      verified
+      photoURL
+      thumbURL
+      profile {
+        authType
+      }
+    }
+  }
+`;

@@ -128,5 +128,57 @@ We'll discover `mutation` queries first to create the data. Mutation query provi
 
 Now we'll try `query` and see how it works.
 
-### Example
+### Example of [preloaded query](https://relay.dev/docs/api-reference/use-preloaded-query)
+
+1. Add `Profile` page.
+
+   ```sh
+   dooboo page Profile
+   ```
+
+2. Add `meQuery` in `User.tsx`.
+
+   ```tsx
+   export const meQuery = graphql`
+     query UserMeQuery {
+       me {
+         id
+         email
+         name
+         nickname
+         statusMessage
+         verified
+         photoURL
+         thumbURL
+         profile {
+           authType
+         }
+       }
+     }
+   `;
+   ```
+
+3. Run relay compiler.
+
+   ```sh
+   relay-expo-workshop git:(step3/queries-and-mutations) ✗ yarn relay
+   yarn run v1.22.10
+   $ relay-compiler
+   HINT: pass --watch to keep watching for changes.
+ 
+   Writing ts
+   Created:
+   - UserMeQuery.graphql.ts
+   Unchanged: 2 files
+   Done in 0.62s.
+   ```
+
+4. Create `Profile` page and add to `RootStack`. Here you can see the [sample of preloaded query](https://gist.github.com/hyochan/8b090764a3ebd4450e04d2d99023822a#gistcomment-3816183).
+
+5. Navigate to `Profile` page when `signIn` completes in `SignIn` page.
+   ```ts
+   navigation.navigate('Profile');
+   ```
+
+### Example of [lazy load query](https://relay.dev/docs/api-reference/use-lazy-load-query)
 

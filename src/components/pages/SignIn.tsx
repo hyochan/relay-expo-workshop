@@ -11,6 +11,7 @@ import {RootStackNavigationProps} from '../navigations/RootStack';
 import {signInEmail} from '../../relay/queries/User';
 import styled from '@emotion/native';
 import {useMutation} from 'react-relay';
+import {useNavigation} from '@react-navigation/native';
 
 const Container = styled.View`
   flex: 1;
@@ -27,6 +28,7 @@ interface Props {
 }
 
 const User: FC<Props> = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -42,10 +44,11 @@ const User: FC<Props> = () => {
 
       onCompleted: (response: UserSignInEmailMutationResponse) => {
         const {token, user} = response.signInEmail as AuthPayload;
+        console.log('user', user);
 
         AsyncStorage.setItem('token', token);
 
-        console.log('user', user);
+        navigation.navigate('Profile');
       },
 
       onError: (error: Error): void => {

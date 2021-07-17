@@ -9,6 +9,7 @@
     "production": "expo start --no-dev",
     "android": "expo start --android",
     "ios": "expo start --ios",
+    "web": "EXPO_WEBPACK_FAST_REFRESH=1 expo web",
     "eject": "expo eject",
     "test": "jest --runInBand",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
