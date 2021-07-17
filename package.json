@@ -29,7 +29,7 @@
     "@expo/metro-config": "^0.1.78",
     "@expo/vector-icons": "^12.0.5",
     "@react-native-async-storage/async-storage": "~1.15.5",
-    "@react-native-masked-view/masked-view": "0.2.6",
+    "@react-native-masked-view/masked-view": "0.2.4",
     "@react-navigation/bottom-tabs": "5.11.11",
     "@react-navigation/core": "^5.15.3",
     "@react-navigation/material-top-tabs": "^5.3.15",
@@ -58,6 +58,7 @@
     "react-native-web": "~0.13.12",
     "react-native-webview": "11.6.2",
     "react-navigation-stack": "^2.10.2",
+    "react-relay": "^11.0.2",
     "react-responsive": "^8.2.0",
     "sentry-expo": "^4.0.1"
   },
