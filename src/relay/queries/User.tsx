@@ -53,3 +53,44 @@ export const userMoreFragment = graphql`
     }
   }
 `;
+
+export const usersQuery = graphql`
+  query UserUsersPaginationQuery(
+    $first: Int!
+    $after: String
+    $searchText: String
+  ) {
+    ...UserFrag_user
+      @arguments(first: $first, after: $after, searchText: $searchText)
+  }
+`;
+
+export const usersFragment = graphql`
+  fragment UserFrag_user on Query
+  @argumentDefinitions(
+    first: {type: "Int"}
+    after: {type: "String"}
+    searchText: {type: "String"}
+  )
+  @refetchable(queryName: "UsersQuery") {
+    users(first: $first, after: $after, searchText: $searchText)
+      @connection(key: "SearchUserComponent_users") {
+      edges {
+        cursor
+        node {
+          id
+          photoURL
+          nickname
+          name
+          statusMessage
+          isOnline
+          hasBlocked
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+`;
