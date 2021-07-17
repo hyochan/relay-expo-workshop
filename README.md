@@ -130,15 +130,13 @@ Describes plugins we are using for graphql codegen.
 
 <!-- Internals -->
 [runtime-config]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/runtime-config.md
-[query]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/query.md
-[mutation]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/mutation.md
-[fragment]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/fragment.md
+[query-and-mutation]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/query-and-mutation.md
 [cache-invalidation]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/cache-invalidation.md
+[fragment]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/fragment.md
 [relay-cursor-pagination]: https://github.com/hyochan/relay-expo-workshop/blob/master/docs/relay-cursor-pagination.md
 
 - [runtime-config][runtime-config]
-- [query][query]
-- [mutation][mutation]
-- [relay-cursor-pagination][relay-cursor-pagination]
+- [query-and-mutation][query-and-mutation]
 - [fragment][fragment]
+- [relay-cursor-pagination][relay-cursor-pagination]
 - [cache invalidation][cache-invalidation]
