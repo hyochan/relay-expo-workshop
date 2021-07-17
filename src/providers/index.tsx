@@ -1,21 +1,26 @@
-import {ThemeProvider, ThemeType} from 'dooboo-ui';
+import {LoadingIndicator, ThemeProvider, ThemeType} from 'dooboo-ui';
+import React, {Suspense} from 'react';
 
 import {AppProvider} from './AppProvider';
-import React from 'react';
+import {ResettableRelayProvider} from './ResettableRelayProvider';
+import {createRelayEnvironment} from '../relay';
 
 interface Props {
   initialThemeType?: ThemeType;
   children?: React.ReactElement;
 }
 
-// Add providers here
 const RootProvider = ({
   initialThemeType,
   children,
 }: Props): React.ReactElement => {
   return (
     <ThemeProvider initialThemeType={initialThemeType}>
-      <AppProvider>{children}</AppProvider>
+      <ResettableRelayProvider createRelayEnvironment={createRelayEnvironment}>
+        <Suspense fallback={<LoadingIndicator />}>
+          <AppProvider>{children}</AppProvider>
+        </Suspense>
+      </ResettableRelayProvider>
     </ThemeProvider>
   );
 };
