@@ -182,3 +182,17 @@ Now we'll try `query` and see how it works.
 
 ### Example of [lazy load query](https://relay.dev/docs/api-reference/use-lazy-load-query)
 
+> We'll still use `meQuery` generated in `2~3` in [example of preloaded query](https://github.com/hyochan/relay-expo-workshop/blob/master/docs/query-and-mutation.md#example-of-preloaded-query)
+
+1. Add `ProfileLazy` page.
+
+   ```sh
+   dooboo page ProfileLazy
+   ```
+
+2. Create `ProfileLazy` page and add to `RootStack`. Here you can see the [sample of lazy load query](https://gist.github.com/hyochan/8b090764a3ebd4450e04d2d99023822a#gistcomment-3816188).
+
+3. Navigate to `ProfileLazy` page from `Profile`.
+   ```ts
+   navigation.navigate('ProfileLazy');
+   ```
