@@ -70,6 +70,13 @@ const Profile: FC<ProfileProps> = ({meQueryReference}) => {
           navigation.navigate('ProfileLazy');
         }}
       />
+      <Button
+        text="Go to UserList"
+        style={{marginTop: 10}}
+        onPress={() => {
+          navigation.navigate('UserList');
+        }}
+      />
     </View>
   );
 };
