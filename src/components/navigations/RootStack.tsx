@@ -5,12 +5,12 @@ import {
 
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import User from '../pages/User';
+import SignIn from '../pages/SignIn';
 import {useTheme} from 'dooboo-ui';
 
 export type RootStackParamList = {
   default: undefined;
-  User: undefined;
+  SignIn: undefined;
 };
 
 export type RootStackNavigationProps<
@@ -25,7 +25,7 @@ function RootStack(): React.ReactElement {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="User"
+        initialRouteName="SignIn"
         screenOptions={{
           headerStyle: {
             backgroundColor: theme.background,
@@ -34,7 +34,7 @@ function RootStack(): React.ReactElement {
           headerTintColor: theme.primary,
         }}
         headerMode={themeType === 'dark' ? 'screen' : 'float'}>
-        <Stack.Screen name="User" component={User} />
+        <Stack.Screen name="SignIn" component={SignIn} />
       </Stack.Navigator>
     </NavigationContainer>
   );
