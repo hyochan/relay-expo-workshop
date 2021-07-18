@@ -4,6 +4,18 @@
 
 > Configure [relay runtime](https://relay.dev/docs/getting-started/step-by-step-guide/#42-configure-relay-runtime).
 
+Configure babel plugin as described in [doc](https://relay.dev/docs/getting-started/installation-and-setup/#set-up-babel-plugin-relay).
+
+```
+{
+  "plugins": [
+    "relay"
+  ]
+}
+```
+
+## Setup
+
 Create `relay` dir in your project.
 
 ```
