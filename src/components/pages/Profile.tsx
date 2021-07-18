@@ -77,6 +77,13 @@ const Profile: FC<ProfileProps> = ({meQueryReference}) => {
           navigation.navigate('UserList');
         }}
       />
+      <Button
+        text="Go to EditProfile"
+        style={{marginTop: 10}}
+        onPress={() => {
+          navigation.navigate('EditProfile');
+        }}
+      />
     </View>
   );
 };
