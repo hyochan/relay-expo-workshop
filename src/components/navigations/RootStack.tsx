@@ -3,6 +3,7 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 
+import EditProfile from '../pages/EditProfile';
 import {NavigationContainer} from '@react-navigation/native';
 import Profile from '../pages/Profile';
 import ProfileLazy from '../pages/ProfileLazy';
@@ -17,6 +18,7 @@ export type RootStackParamList = {
   UserList: undefined;
   Profile: undefined;
   ProfileLazy: undefined;
+  EditProfile: undefined;
 };
 
 export type RootStackNavigationProps<
@@ -44,6 +46,7 @@ function RootStack(): React.ReactElement {
         <Stack.Screen name="UserList" component={UserList} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="ProfileLazy" component={ProfileLazy} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
