@@ -158,37 +158,3 @@ export const relayTransactionLogger =
   };
 ```
 
-### Resettable relay provider
-
-Lastly, add [ResettableRelayProvider][ResettableRelayProvider] to easily reset relay cache.
-
-```
-dooboo provider ResettableRelayProvider
-```
-
-and copy and paste the [code][ResettableRelayProvider].
-
-```
-providers/
-├─ ResettableRelayProvider.tsx
-└─ index.tsx
-```
-
-Initialize relay environment in provider. Below is an example.
-
-```tsx
-const RootProvider = ({
-  initialThemeType,
-  children,
-}: Props): React.ReactElement => {
-  return (
-    <ThemeProvider initialThemeType={initialThemeType}>
-      <ResettableRelayProvider createRelayEnvironment={createRelayEnvironment}>
-        <Suspense fallback={<LoadingIndicator />}>
-          <AuthProvider>{children}</AuthProvider>
-        </Suspense>
-      </ResettableRelayProvider>
-    </ThemeProvider>
-  );
-};
-```
